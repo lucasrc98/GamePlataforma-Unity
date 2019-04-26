@@ -6,6 +6,7 @@ TagManager:
   tags:
   - plano
   - esfera
+  - player
   layers:
   - Default
   - TransparentFX
