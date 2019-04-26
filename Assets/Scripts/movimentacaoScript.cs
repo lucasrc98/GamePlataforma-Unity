@@ -34,12 +34,12 @@ public class movimentacaoScript : MonoBehaviour{
 
         // Se o botão [seta para Esquerda] for apertado, girar o cubo em sentido anti horario
         if (Input.GetKey(KeyCode.LeftArrow)){
-            transform.Rotate(0, rotacionSpeed, 0);
+            transform.Rotate(0, -rotacionSpeed, 0);
         }
 
         // Se o botão [seta para Direita] for apertado, girar o cubo em sentido horario     
         if (Input.GetKey(KeyCode.RightArrow)){
-            transform.Rotate(0, -rotacionSpeed, 0);
+            transform.Rotate(0, rotacionSpeed, 0);
         }
 
         // Se botão Espaço for apertado e o cubo não estiver pulando(Não estiver em contato com o plano),
