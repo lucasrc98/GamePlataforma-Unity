@@ -15,6 +15,8 @@ public class movimentacaoScript : MonoBehaviour{
         // Setando os valores para as variaveis que faram parte do cubo assim que o jogo se inicia
         movementSpeed = 0.15f;
         rotacionSpeed = 3.0f;
+        forceJump = 160f;
+        jumping = false;
     }
 
     // função de atualização, é chamada uma vez por quadro
@@ -40,8 +42,33 @@ public class movimentacaoScript : MonoBehaviour{
             transform.Rotate(0, -rotacionSpeed, 0);
         }
 
-       
+        // Se botão Espaço for apertado e o cubo não estiver pulando(Não estiver em contato com o plano),
+        // aplica uma força para o cubo pular
+        if (Input.GetKey(KeyCode.Space) && !jumping){
+            this.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.up * forceJump);
+        }
+
+    }
+    void OnCollisionEnter(Collision col){
+    // Se o cubo estiver em contato com o chão, a variavel pulando se torna falsa
+        // plano é a tag adicionada para representar o chão(plano)
+        if (col.gameObject.tag == "plano"){
+            jumping = false;
+
+            // Apenas mostra essa mensagem no log
+            Debug.Log("jumping false");
+        }
     }
 
-   
+    void OnCollisionExit(Collision col){
+    // Se o cubo não estiver em contato com o chão, a variavel pulando se torna verdadeira
+        // plano é a tag adicionada para representar o chão(plano)
+        if (col.gameObject.tag == "plano"){
+            jumping = true;
+
+            // Apenas mostra essa mensagem no log
+            Debug.Log("jumping true");
+        }
+    }
+
 }
